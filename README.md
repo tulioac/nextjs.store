@@ -60,6 +60,7 @@ As of Dec, 22, 2021, this starter is still far from covering most basic cases fo
      }
    }
    ```
+Add message about site domain env var here
 
 3. **Start developing**
 
