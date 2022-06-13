@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+- Status code when error occurs (404/500) ([#116](https://github.com/vtex-sites/nextjs.store/pull/116))
 
 - The search input's dropdown not closing when a suggested product was selected ([#112](https://github.com/vtex-sites/nextjs.store/pull/112).
 
