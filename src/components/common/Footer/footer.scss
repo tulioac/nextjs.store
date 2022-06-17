@@ -1,12 +1,8 @@
 @import "src/styles/scaffold";
 
 .footer {
+  padding-top: 0;
   background-color: var(--fs-color-neutral-bkg);
-
-  .incentives {
-    padding-top: 0;
-  }
-
   content-visibility: auto;
   contain-intrinsic-size: rem(860px);
 
@@ -94,7 +90,7 @@
     }
 
     svg {
-      border: var(--fs-border-width-default) solid var(--fs-color-neutral-3);
+      border: var(--fs-border-width) solid var(--fs-color-neutral-3);
       border-radius: var(--fs-border-radius-small);
     }
 
@@ -141,7 +137,7 @@
       margin-top: var(--fs-spacing-0);
     }
 
-    [data-store-link] {
+    [data-fs-link] {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -171,7 +167,7 @@
     margin-bottom: var(--fs-spacing-2);
   }
 
-  [data-store-link] {
+  [data-fs-link] {
     display: inline-block;
     padding-left: 0;
   }

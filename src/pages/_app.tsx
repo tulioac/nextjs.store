@@ -5,7 +5,7 @@ import '../styles/global/typography.scss'
 import '../styles/global/layout.scss'
 import '../styles/global/components.scss'
 
-import { CartProvider, SessionProvider, UIProvider } from '@faststore/sdk'
+import { CartProvider, SessionProvider } from '@faststore/sdk'
 import NextNProgress from 'nextjs-progressbar'
 import type { AppProps } from 'next/app'
 
@@ -13,8 +13,8 @@ import Layout from 'src/Layout'
 import AnalyticsHandler from 'src/sdk/analytics'
 import { validateCart } from 'src/sdk/cart/validate'
 import ErrorBoundary from 'src/sdk/error/ErrorBoundary'
-import { uiActions, uiEffects, uiInitialState } from 'src/sdk/ui'
-import { ModalProvider } from 'src/sdk/ui/modal'
+import { validateSession } from 'src/sdk/session/validate'
+import UIProvider from 'src/sdk/ui/Provider'
 
 import storeConfig from '../../store.config'
 
@@ -28,18 +28,18 @@ function App({ Component, pageProps }: AppProps) {
       />
       <AnalyticsHandler />
 
-      <UIProvider
-        initialState={uiInitialState}
-        actions={uiActions}
-        effects={uiEffects}
-      >
-        <SessionProvider initialState={{ channel: storeConfig.channel }}>
+      <UIProvider>
+        <SessionProvider
+          initialState={{
+            channel: storeConfig.channel,
+            locale: storeConfig.locale,
+          }}
+          onValidateSession={validateSession}
+        >
           <CartProvider mode="optimistic" onValidateCart={validateCart}>
-            <ModalProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </ModalProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </CartProvider>
         </SessionProvider>
       </UIProvider>

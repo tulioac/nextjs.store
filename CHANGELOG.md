@@ -7,13 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Addded
+### Added
 
-- `ImageGallery` to PDP ([#6](https://github.com/vtex-sites/nextjs.store/pull/6))
+- Displays the `Sandbox` tab on the storybook along with `Viewport` toolbar and `Accessibility` checks ([#129](https://github.com/vtex-sites/nextjs.store/pull/129))
+- The search input now includes the last 4 previously searched terms (`SearchHistory`) ([#112](https://github.com/vtex-sites/nextjs.store/pull/112)).
+- The top 5 searches (`SuggestionsTopSearch`) are now integrated into the search input ([#112](https://github.com/vtex-sites/nextjs.store/pull/112)).
+- Applies new local tokens to `EmptyState` ([#122](https://github.com/vtex-sites/nextjs.store/pull/122))
+- Applies new local tokens to `Dropdown` ([#118](https://github.com/vtex-sites/nextjs.store/pull/118))
+- Creates and styles `Dropdown` component ([#118](https://github.com/vtex-sites/nextjs.store/pull/118))
+- 301 redirects when visiting old VTEX product routes ([#93](https://github.com/vtex-sites/nextjs.store/pull/93))
+- Support for the new type definitions from React 18 ([#113](https://github.com/vtex-sites/nextjs.store/pull/113)).
 
 ### Changed
 
-- `ImageGallery` now uses native scroll instead of `useSlider` ([#6](https://github.com/vtex-sites/nextjs.store/pull/6))
+- Upgrade dependencies ([#131](https://github.com/vtex-sites/nextjs.store/pull/131))
+- Uses `[data-fs-dropdown-button]` instead of `[data-store-dropdown-button]` to select `DropdownButton` on breadcrumb stylesheet ([#123](https://github.com/vtex-sites/nextjs.store/pull/123))
+- Replaces `EmptyState` Related Components with Use Cases section on storybook ([#126](https://github.com/vtex-sites/nextjs.store/pull/126))
+- Tweaks `EmptyState` token name ([#125](https://github.com/vtex-sites/nextjs.store/pull/125))
+- Storybook's version from 6.4.20 to 6.5.9 ([#120](https://github.com/vtex-sites/nextjs.store/pull/120))
+- Unifies `Link` component usage by adding support for both external and client-side links ([#117](https://github.com/vtex-sites/nextjs.store/pull/117))
 
 ### Deprecated
 
@@ -21,12 +33,93 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Some console errors when running the storybook ([#129](https://github.com/vtex-sites/nextjs.store/pull/129))
+- The search input's dropdown not closing when a suggested product was selected ([#112](https://github.com/vtex-sites/nextjs.store/pull/112).
+- Status code when error occurs (404/500) ([#116](https://github.com/vtex-sites/nextjs.store/pull/116))
+
 ### Security
+
+## [22.23.0.beta] - 2022-06-10
+
+### Added
+
+- Creates new Storybook section `BestPractices` ([#101](https://github.com/vtex-sites/nextjs.store/pull/101))
+- Applies new local tokens to `OutOfStock` ([#97](https://github.com/vtex-sites/nextjs.store/pull/97))
+- Applies new local tokens to `CartItem` ([#102](https://github.com/vtex-sites/nextjs.store/pull/102))
+- Applies new local tokens to `ProductTitle` ([#84](https://github.com/vtex-sites/nextjs.store/pull/84))
+- Applies new local tokens to `Alert` ([#94](https://github.com/vtex-sites/nextjs.store/pull/94))
+- Applies new local tokens to `Price` ([#80](https://github.com/vtex-sites/nextjs.store/pull/80))
+- Creates `Radio` component ([#87](https://github.com/vtex-sites/nextjs.store/pull/87))
+- Add Storybook documentation for `QuantitySelector` component ([#81](https://github.com/vtex-sites/nextjs.store/pull/81))
+- Applies new local tokens to `Checkbox` ([#59](https://github.com/vtex-sites/nextjs.store/pull/59))
+- Applies new local tokens to `Incentives` ([#56](https://github.com/vtex-sites/nextjs.store/pull/56))
+- Adds tests for analytics events on `CartItem` ([#66](https://github.com/vtex-sites/nextjs.store/pull/66))
+- additionalProperty to CartItem id ([#47](https://github.com/vtex-sites/nextjs.store/pull/47))
+- Applies new local tokens to `Link` ([#17](https://github.com/vtex-sites/nextjs.store/pull/17))
+- Applies new local tokens to `Select` ([#16](https://github.com/vtex-sites/nextjs.store/pull/16))
+- `Toggle` component ([#15](https://github.com/vtex-sites/nextjs.store/pull/15))
+- Break into new tasks the `useQuery` fetcher execution ([#45](https://github.com/vtex-sites/nextjs.store/pull/45))
+- Suspend queries in the `ButtonSignIn`, `ProductShelf` and `ProductTiles` ([#45](https://github.com/vtex-sites/nextjs.store/pull/45))
+- Uses new WebOps Incremental Static Builds ([#39](https://github.com/vtex-sites/nextjs.store/pull/39))
+- An initial integration of the search term & product suggestions ([#33](https://github.com/vtex-sites/nextjs.store/pull/33)).
+- `ImageGallery` to PDP ([#6](https://github.com/vtex-sites/nextjs.store/pull/6))
+- `add_to_cart` and `remove_from_cart` analytics events to `CartItem` ([#35](https://github.com/vtex-sites/nextjs.store/pull/35))
+- `ButtonSignInFallback` component ([#45](https://github.com/vtex-sites/nextjs.store/pull/45))
+
+### Changed
+
+- `SearchHistory`, `Suggestions`, and `SuggestionsTopSearch` components to reuse shared markup and styles ([#86](https://github.com/vtex-sites/nextjs.store/pull/86)).
+- Removed CSS Modules for the components `SuggestionProductCard` and `Suggestions` for now so they match what's currently on the Gatsby starter. It will be added again later ([#86](https://github.com/vtex-sites/nextjs.store/pull/86)).
+- Merges UIProvider and ModalProvider into a single context provider ([#100](https://github.com/vtex-sites/nextjs.store/pull/100))
+- Synchronizes the components' code of both starters ([#103](https://github.com/vtex-sites/nextjs.store/pull/103))
+- Uses `--docs` option on storybook script ([#107](https://github.com/vtex-sites/nextjs.store/pull/107))
+- Improves storybook doc's table rows ([#106](https://github.com/vtex-sites/nextjs.store/pull/106))
+- Changes weird if logic in suspense hooks ([#96](https://github.com/vtex-sites/nextjs.store/pull/96))
+- Adjust `Alert` component for `CMS` ([#31](https://github.com/vtex-sites/nextjs.store/pull/31))
+- Refactors `Button` component and adds Storybook doc ([#99](https://github.com/vtex-sites/nextjs.store/pull/99))
+- Uses `Hero` component from FSUI ([#98](https://github.com/vtex-sites/nextjs.store/pull/98))
+- Change Storybook prop descriptions for `QuantitySelector` component ([#92](https://github.com/vtex-sites/nextjs.store/pull/92))
+- Applied styles to `Toast` using CSS Modules ([#82](https://github.com/vtex-sites/nextjs.store/pull/82))
+- Tweaks CSS Modules pattern on `Checkbox` component [#79](https://github.com/vtex-sites/nextjs.store/pull/79)
+- Uses CSS Modules on `ProductCard` component [#61](https://github.com/vtex-sites/nextjs.store/pull/61)
+- Uses CSS Modules on `ProductGrid` component [#61](https://github.com/vtex-sites/nextjs.store/pull/61)
+- Uses CSS Modules on `QuantitySelector` component [#76](https://github.com/vtex-sites/nextjs.store/pull/76)
+- Added base files (`Getting Started`, `Theming`, `Colors`, `Typography` and `Icons`) to Storybook ([#67](https://github.com/vtex-sites/nextjs.store/pull/67))
+- Updated tokens' naming scheme ([#67](https://github.com/vtex-sites/nextjs.store/pull/67))
+- `OutOfStock` component ([#72](https://github.com/vtex-sites/nextjs.store/pull/72))
+- Displays 5 products on product suggestion for better mobile experience ([#74](https://github.com/vtex-sites/nextjs.store/pull/74))
+- LCP images to be fetched with a higher priority and improve the score ([#49](https://github.com/vtex-sites/nextjs.store/pull/49)).
+- Uses `ProductCard` component from FSUI instead of `Card` ([#41](https://github.com/vtex-sites/nextjs.store/pull/41))
+- `EmptyState` component to be customized with a rounded `variant` prop (`default` | `rounded`) ([#11](https://github.com/vtex-sites/nextjs.store/pull/11)).
+- Uses camelCase classes when using CSS Modules ([#42](https://github.com/vtex-sites/nextjs.store/pull/42))
+- `ImageGallery` now uses native scroll instead of `useSlider` ([#6](https://github.com/vtex-sites/nextjs.store/pull/6))
+
+### Removed
+
+- Removes unnecessary logic in suspense hooks ([#96](https://github.com/vtex-sites/nextjs.store/pull/96))
+- `Hero` component from `components/ui` ([#98](https://github.com/vtex-sites/nextjs.store/pull/98))
+- Unused `-default` at css variables ([#78](https://github.com/vtex-sites/nextjs.store/pull/78))
+- The `default` nomenclature from global tokens ([#51](https://github.com/vtex-sites/nextjs.store/pull/51))
+
+### Fixed
+
+- Use `SpotPrice` for low/high price on `aggretateOffer` ([#111](https://github.com/vtex-sites/nextjs.store/pull/111))
+- Fix Region Input's behavior when setting zipCode ([#108](https://github.com/vtex-sites/nextjs.store/pull/108))
+- Lighthouse complaining about missing robots.txt ([#89](https://github.com/vtex-sites/nextjs.store/pull/89))
+- Fix 404 being returned for existing pages when the server fails to fetch data ([#88](https://github.com/vtex-sites/nextjs.store/pull/88))
+- Search suggestions missing locale info ([#71](https://github.com/vtex-sites/nextjs.store/pull/71))
+- Limit custom props only for `img` and `link` tags ([#60](https://github.com/vtex-sites/nextjs.store/pull/60))
+- Warning related to `fetchPriority` prop not being recognized as `img` and `link`'s prop ([#54](https://github.com/vtex-sites/nextjs.store/pull/54))
+- Error on Storybook build when trying to import base CSS styles/mixins in CSS module files ([#53](https://github.com/vtex-sites/nextjs.store/pull/53))
+- A missing gap between the Sign In link and Cart button on desktop ([#11](https://github.com/vtex-sites/nextjs.store/pull/11)).
+- A bugged vertical gap with the `EmptyState` component inside the cart ([#11](https://github.com/vtex-sites/nextjs.store/pull/11)).
+- Fixes Storybook build removing unused imports ([#40](https://github.com/vtex-sites/nextjs.store/pull/40))
 
 ## [22.19.0.beta] - 2022-05-06
 
 ### Added
 
+- Applies new local tokens to `Input Text` ([#15](https://github.com/vtex-sites/nextjs.store/pull/14))
 - New items to the checklist of the `pull_request_template.md` ([#4](https://github.com/vtex-sites/nextjs.store/pull/4))
 - Integrates with search.query event api ([#2](https://www.github.com/vtex-sites/nextjs.store/pull/2))
 - Applies new local tokens to `Badge` ([#462](https://www.github.com/vtex-sites/base.store/pull/462))
@@ -35,9 +128,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Renames `Badge` component prop `interactive` to `actionable` ([#20](https://github.com/vtex-sites/nextjs.store/pull/20))
 - Accessibility tests to output what were the actual violations, not just how many ([#12](https://github.com/vtex-sites/nextjs.store/pull/12)).
 - Changed name from BaseStore to GatsbyStore ([#497](https://github.com/vtex-sites/base.store/pull/497))
-- `CHANGELOG.md` to link to PRs, removed a duplicated section, and fixed some markdown ([#13](https://github.com/vtex-sites/nextjs.store/pull/13)).
+- `CHANGELOG.md` to link to PRs, removed a duplicated section, and fixed some markdown ([#13](https://github.com/vtex-sites/nextjs.store/pull/13))
 - Update Regionalization input to use the `TextInput` component ([#9](https://github.com/vtex-sites/nextjs.store/pull/9))
 - Update `RegionalizationButton` and `RegionalizationBar` to show the postal code ([#7](https://github.com/vtex-sites/nextjs.store/pull/7))
 - Migrates to Next.JS ([#475](https://www.github.com/vtex-sites/base.store/pull/475))
@@ -57,6 +151,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fix `ImageGallerySelector` arrow toggle according to scroll position ([#43](https://github.com/vtex-sites/nextjs.store/pull/43))
 - Fixes `ProductCard` bordered variant ([#5](https://github.com/vtex-sites/nextjs.store/pull/5))
 - Fix Storybook initialization ([#492](https://www.github.com/vtex-sites/base.store/pull/492))
 - Fix styling issue on Regionalization Modal by adding the missing imports in layout.scss ([#488](https://www.github.com/vtex-sites/base.store/pull/488))

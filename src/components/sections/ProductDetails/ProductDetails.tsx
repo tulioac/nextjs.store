@@ -1,5 +1,5 @@
 import { sendAnalyticsEvent, useSession } from '@faststore/sdk'
-import { gql } from '@vtex/graphql-utils'
+import { gql } from '@faststore/graphql-utils'
 import { useEffect, useState } from 'react'
 import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
 
@@ -52,6 +52,7 @@ function ProductDetails({ product: staleProduct }: Props) {
         lowPrice,
       },
       breadcrumbList: breadcrumbs,
+      additionalProperty,
     },
   } = data
 
@@ -70,6 +71,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       image: productImages,
       brand,
       isVariantOf,
+      additionalProperty,
     },
   })
 
@@ -113,7 +115,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       <section className="product-details__body">
         <header className="product-details__title">
           <ProductTitle
-            title={<h1 className="text__title-product">{name}</h1>}
+            title={<h1>{name}</h1>}
             label={
               <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} big />
             }
@@ -280,6 +282,13 @@ export const fragment = gql`
         name
         position
       }
+    }
+
+    additionalProperty {
+      propertyID
+      name
+      value
+      valueReference
     }
   }
 `

@@ -1,20 +1,21 @@
 import {
-  Card as UICard,
-  CardActions as UICardActions,
-  CardContent as UICardContent,
-  CardImage as UICardImage,
+  ProductCard as UIProductCard,
+  ProductCardActions as UIProductCardActions,
+  ProductCardContent as UIProductCardContent,
+  ProductCardImage as UIProductCardImage,
 } from '@faststore/ui'
-import { gql } from '@vtex/graphql-utils'
+import { gql } from '@faststore/graphql-utils'
 import { memo } from 'react'
 import type { ReactNode } from 'react'
 
-import FrameworkLink from 'src/components/common/Link'
+import Link from 'src/components/ui/Link'
 import { Badge, DiscountBadge } from 'src/components/ui/Badge'
 import { Image } from 'src/components/ui/Image'
 import Price from 'src/components/ui/Price'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProductLink } from 'src/sdk/product/useProductLink'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
+import styles from 'src/components/product/ProductCard/product-card.module.scss'
 
 type Variant = 'wide' | 'default'
 
@@ -50,15 +51,16 @@ function ProductCard({
   const outOfStock = availability !== 'https://schema.org/InStock'
 
   return (
-    <UICard
+    <UIProductCard
       data-fs-product-card
       data-fs-product-card-variant={variant}
       data-fs-product-card-bordered={bordered}
-      data-fs-product-card-actionabled={!!ButtonBuy}
+      data-fs-product-card-actionable={!!ButtonBuy}
       data-fs-product-card-sku={sku}
+      className={styles.fsProductCard}
       {...otherProps}
     >
-      <UICardImage>
+      <UIProductCardImage>
         <Image
           src={img.url}
           alt={img.alternateName}
@@ -67,14 +69,14 @@ function ProductCard({
           sizes="(max-width: 768px) 25vw, 30vw"
           loading="lazy"
         />
-      </UICardImage>
+      </UIProductCardImage>
 
-      <UICardContent data-fs-product-card-content>
+      <UIProductCardContent data-fs-product-card-content>
         <div data-fs-product-card-heading>
           <h3 data-fs-product-card-title>
-            <FrameworkLink {...linkProps} title={name}>
+            <Link {...linkProps} title={name}>
               {name}
-            </FrameworkLink>
+            </Link>
           </h3>
           <div data-fs-product-card-prices>
             <Price
@@ -104,12 +106,12 @@ function ProductCard({
           <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
         )}
         {!!ButtonBuy && (
-          <UICardActions data-fs-product-card-actions>
+          <UIProductCardActions data-fs-product-card-actions>
             {ButtonBuy}
-          </UICardActions>
+          </UIProductCardActions>
         )}
-      </UICardContent>
-    </UICard>
+      </UIProductCardContent>
+    </UIProductCard>
   )
 }
 

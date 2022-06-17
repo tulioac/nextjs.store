@@ -5,7 +5,13 @@ module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        backgrounds: false,
+        outline: false,
+      },
+    },
     '@storybook/addon-a11y',
   ],
   framework: '@storybook/react',
@@ -15,7 +21,7 @@ module.exports = {
   staticDirs: ['../public'],
   webpackFinal: async (config) => {
     config.module.rules[0].use[0].options.plugins.push(
-      require.resolve('@vtex/graphql-utils/babel')
+      require.resolve('@faststore/graphql-utils/babel')
     )
 
     config.resolve.plugins = [
@@ -25,6 +31,28 @@ module.exports = {
         configFile: resolve(__dirname, '../tsconfig.json'),
       }),
     ]
+
+    // SCSS import and camelCase support for CSS modules
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              exportLocalsConvention: 'camelCase',
+            },
+          },
+        },
+        {
+          loader: 'sass-loader',
+        },
+      ],
+      include: resolve(__dirname, '../'),
+    })
 
     return config
   },

@@ -3,13 +3,24 @@ import { useCallback } from 'react'
 import type { ReactNode, MouseEvent } from 'react'
 import type { AlertProps } from '@faststore/ui'
 
-import FrameworkLink from 'src/components/common/Link'
+import Link from 'src/components/ui/Link'
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 
-type Props = AlertProps & {
+import styles from './alert.module.scss'
+
+export type Props = AlertProps & {
+  /**
+   * Icon component for additional customization
+   */
   icon?: ReactNode
+  /**
+   * Enables dismissible feature
+   */
   dismissible?: boolean
+  /**
+   * The href and label used at the link
+   */
   link?: {
     to: string
     text: string
@@ -37,20 +48,27 @@ function Alert({
   )
 
   return (
-    <UIAlert {...otherProps}>
+    <UIAlert
+      data-fs-alert
+      data-fs-alert-dismissible={dismissible}
+      className={styles.fsAlert}
+      {...otherProps}
+    >
       {icon && <UIIcon component={icon} />}
 
-      <div data-alert-content>{children}</div>
+      <p data-fs-alert-content>{children}</p>
 
       {link && (
-        <div data-alert-link>
-          <FrameworkLink href={link.to}>{link.text}</FrameworkLink>
-        </div>
+        <Link data-fs-alert-link variant="inline" href={link.to}>
+          {link.text}
+        </Link>
       )}
 
       {dismissible && (
-        <Button data-alert-button aria-label="Close" onClick={handleClose}>
-          <Icon name="X" width={18} height={18} weight="bold" />
+        <Button data-fs-alert-button aria-label="Close" onClick={handleClose}>
+          <span>
+            <Icon name="X" width={18} height={18} weight="bold" />
+          </span>
         </Button>
       )}
     </UIAlert>

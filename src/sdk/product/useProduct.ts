@@ -1,6 +1,6 @@
 import { useSession } from '@faststore/sdk'
 import { useMemo } from 'react'
-import { gql } from '@vtex/graphql-utils'
+import { gql } from '@faststore/graphql-utils'
 
 import type {
   BrowserProductQueryQuery,
@@ -21,7 +21,7 @@ export const useProduct = <T extends BrowserProductQueryQuery>(
   productID: string,
   fallbackData?: T
 ) => {
-  const { channel } = useSession()
+  const { channel, locale } = useSession()
   const variables = useMemo(() => {
     if (!channel) {
       throw new Error(`useProduct: 'channel' from session is an empty string.`)
@@ -31,9 +31,10 @@ export const useProduct = <T extends BrowserProductQueryQuery>(
       locator: [
         { key: 'id', value: productID },
         { key: 'channel', value: channel },
+        { key: 'locale', value: locale },
       ],
     }
-  }, [channel, productID])
+  }, [channel, locale, productID])
 
   return useQuery<
     BrowserProductQueryQuery & T,

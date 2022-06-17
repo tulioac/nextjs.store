@@ -17,7 +17,8 @@ module.exports = {
   },
 
   // Default channel
-  channel: '{"salesChannel":"1"}',
+  channel: '{"salesChannel":"1","regionId":""}',
+  locale: 'en-US',
 
   // Production URLs
   storeUrl: 'https://vtexfaststore.com',
@@ -31,7 +32,7 @@ module.exports = {
     server: process.env.BASE_SITE_URL || 'http://localhost:3000',
     pages: {
       home: '/',
-      pdp: '/apple-magic-mouse-99988212/p',
+      pdp: '/apple-magic-mouse/p',
       collection: '/office',
     },
   },
@@ -40,7 +41,7 @@ module.exports = {
   cypress: {
     pages: {
       home: '/',
-      pdp: '/apple-magic-mouse-99988212/p',
+      pdp: '/apple-magic-mouse/p',
       collection: '/office',
       collection_filtered:
         '/office/?category-1=office&marca=acer&facets=category-1%2Cmarca',

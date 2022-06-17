@@ -3,11 +3,28 @@ import { memo, useEffect, useState } from 'react'
 
 import Icon from 'src/components/ui/Icon'
 
+import styles from './quantity-selector.module.scss'
+
 interface QuantitySelectorProps {
+  /**
+   * The maximum value the quantity selector can receive
+   */
   max?: number
+  /**
+   * The minimum value the quantity selector can receive
+   */
   min?: number
+  /**
+   * The initial value for quantity selector
+   */
   initial?: number
+  /**
+   * Specifies that the whole quantity selector component should be disabled.
+   */
   disabled?: boolean
+  /**
+   * Event emitted when value is changed
+   */
   onChange?: (value: number) => void
 }
 
@@ -60,16 +77,19 @@ export function QuantitySelector({
   return (
     <UIQuantitySelector
       data-fs-quantity-selector={disabled ? 'disabled' : 'true'}
+      className={styles.fsQuantitySelector}
       quantity={quantity}
       leftButtonProps={{
         onClick: decrease,
         disabled: isLeftDisabled || disabled,
         icon: <Icon name="Minus" width={16} height={16} weight="bold" />,
+        testId: 'store-quantity-selector-left',
       }}
       rightButtonProps={{
         onClick: increase,
         disabled: isRightDisabled || disabled,
         icon: <Icon name="Plus" width={16} height={16} weight="bold" />,
+        testId: 'store-quantity-selector-right',
       }}
       inputProps={{
         onChange: validateInput,

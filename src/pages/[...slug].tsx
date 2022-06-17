@@ -1,9 +1,10 @@
+import { isNotFoundError } from '@faststore/api'
 import {
   formatSearchState,
   parseSearchState,
   SearchProvider,
 } from '@faststore/sdk'
-import { gql } from '@vtex/graphql-utils'
+import { gql } from '@faststore/graphql-utils'
 import { BreadcrumbJsonLd, NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -164,20 +165,24 @@ export const getStaticProps: GetStaticProps<
   ServerCollectionPageQueryQuery,
   { slug: string[] }
 > = async ({ params }) => {
-  const slug = params?.slug.join('/') ?? ''
-
-  const { data } = await execute<
+  const { data, errors = [] } = await execute<
     ServerCollectionPageQueryQueryVariables,
     ServerCollectionPageQueryQuery
   >({
-    variables: { slug },
+    variables: { slug: params?.slug.join('/') ?? '' },
     operationName: query,
   })
 
-  if (data === null) {
+  const notFound = errors.find(isNotFoundError)
+
+  if (notFound) {
     return {
       notFound: true,
     }
+  }
+
+  if (errors.length > 0) {
+    throw errors[0]
   }
 
   return {

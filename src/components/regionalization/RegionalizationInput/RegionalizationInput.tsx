@@ -1,28 +1,17 @@
 import { useSession } from '@faststore/sdk'
-import { gql } from '@vtex/graphql-utils'
 import { useRef, useState } from 'react'
 
-import { request } from 'src/sdk/graphql/request'
-import type {
-  UpdateSessionMutationMutation,
-  UpdateSessionMutationMutationVariables,
-} from '@generated/graphql'
 import InputText from 'src/components/ui/InputText'
-import { useModal } from 'src/sdk/ui/modal/Provider'
+import { validateSession } from 'src/sdk/session/validate'
 
-export const UpdateSessionMutation = gql`
-  mutation UpdateSessionMutation($session: IStoreSession!) {
-    updateSession(session: $session) {
-      channel
-    }
-  }
-`
+interface Props {
+  closeModal: () => void
+}
 
-export default function RegionalizationInput() {
+function RegionInput({ closeModal }: Props) {
   const inputRef = useRef<HTMLInputElement>(null)
-  const { country, setSession, ...partialSession } = useSession()
+  const { setSession, isValidating, ...session } = useSession()
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const { onModalClose } = useModal()
 
   const handleSubmit = async () => {
     const value = inputRef.current?.value
@@ -34,25 +23,16 @@ export default function RegionalizationInput() {
     setErrorMessage('')
 
     try {
-      const {
-        updateSession: { channel },
-      } = await request<
-        UpdateSessionMutationMutation,
-        UpdateSessionMutationMutationVariables
-      >(UpdateSessionMutation, {
-        session: {
-          channel: partialSession.channel,
-          postalCode: value,
-          country,
-        },
-      })
-
-      setSession({
+      const newSession = await validateSession({
+        ...session,
         postalCode: value,
-        channel: channel ?? partialSession.channel,
       })
 
-      onModalClose()
+      if (newSession) {
+        setSession(newSession)
+      }
+
+      closeModal()
     } catch (error) {
       setErrorMessage('You entered an invalid Zip Code')
     }
@@ -71,3 +51,5 @@ export default function RegionalizationInput() {
     </div>
   )
 }
+
+export default RegionInput
