@@ -1,9 +1,11 @@
 {
   "baseUrl": "http://localhost:3000/",
-  "retries": 0,
+  "retries": 2,
   "video": true,
   "trashAssetsBeforeRuns": true,
   "screenshotOnRunFailure": true,
   "viewportWidth": 1000,
-  "viewportHeight": 600
+  "viewportHeight": 600,
+  "defaultCommandTimeout": 4000,
+  "chromeWebSecurity": true
 }
